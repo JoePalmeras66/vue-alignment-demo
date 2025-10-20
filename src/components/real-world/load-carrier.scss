@@ -204,8 +204,9 @@
   }
 
   /* ----- Layout ----- */
+  /* Position-specific flex direction must override default */
   &.position-top {
-    flex-direction: column;
+    flex-direction: column !important;
     align-items: center;
     .header {
       flex: 0 0 var(--lc-header-text-size);
@@ -213,7 +214,7 @@
   }
 
   &.position-left {
-    flex-direction: row;
+    flex-direction: row !important;
     align-items: center;
     .header {
       flex: 0 0 var(--lc-header-text-size);
@@ -221,7 +222,7 @@
   }
 
   &.position-right {
-    flex-direction: row-reverse;
+    flex-direction: row-reverse !important;
     align-items: center;
     .header {
       order: 1;

@@ -113,7 +113,27 @@ The demo code worked because it used the correct syntax from the beginning:
 3. **Property Names:** CSS property names must be exact - `flex-direction` not `flex-display`
 4. **Template-Style Matching:** The class names in your template must exactly match the selectors in your styles
 
+## Additional Issue Found (Second Analysis)
+
+### 3. CSS Specificity Override Problem
+
+**Problem:** Even with correct selectors, the flex-direction was not being applied because other CSS rules were overriding it.
+
+**Fix:** Added `!important` to the flex-direction properties to ensure they override any conflicting styles:
+
+```scss
+&.position-left {
+  flex-direction: row !important;  // Ensures this overrides default column
+}
+
+&.position-right {
+  flex-direction: row-reverse !important;  // Ensures this overrides default column
+}
+```
+
+**Why This Was Needed:** In complex applications with multiple stylesheets and CSS frameworks, specificity conflicts can prevent styles from applying. The `!important` flag ensures the position-specific flex-direction always takes precedence.
+
 ## Files Fixed
 
-- `src/components/real-world/load-carrier.scss` - Fixed position selectors (lines 207-232)
+- `src/components/real-world/load-carrier.scss` - Fixed position selectors (lines 207-232) and added !important flags
 - `src/components/real-world/LivePickLoadCarrierHeader.vue` - Fixed flex-direction typos (lines 118, 123)
